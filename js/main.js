@@ -1,28 +1,22 @@
-const title = "Over Working";
-const screens = "Простые, Сложные, Интерактивные";
-const screenPrice  = 450;
-const rollback = 65;
-const fullPrice = 35000;
-const adaptive = true;
+let num = 266219;
+// переменная num
 
-console.log(title);
+console.log('1) ',num);
 
-console.log(fullPrice);
+const multiplyingDigitsNumber = str => {
+    let res = 1;
+    for (let i = 0; i < str.length; i++) {
+        res *= str[i];
+    }
+    return res;
+};
+// произведение (умножение чисел)
 
-console.log(adaptive);
+const multiplyingDigits = multiplyingDigitsNumber(num.toString());
+console.log('2) ', multiplyingDigits);
 
-console.log(title, fullPrice, adaptive);
+const raising = multiplyingDigits ** 3;
+console.log('3) ', raising);
+// возведение в 3 степень
 
-console.log(screens.length);
-
-console.log('“Стоимость верстки экранов '+ screenPrice +' рублей/ долларов/гривен/юани”' );
-
-console.log('“Стоимость разработки сайта '+ fullPrice +' рублей/ долларов/гривен/юани”' );
-
-console.log(screens.toLowerCase());
-
-console.log(screens.split());
-
-console.log(screens.toLowerCase().split());
-
-console.log(fullPrice * (rollback/100));
+console.log('4) ', raising.toString().substr(0,2));
