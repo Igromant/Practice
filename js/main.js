@@ -1,66 +1,33 @@
 'use strict';
 
-let title = prompt(' “Как называется ваш проект?” ');
-let adaptive = prompt(' “Нужен ли адаптив на сайте? ”', 'true/false');
-let screens = prompt(' “Какие типы экранов нужно разработать?” ', ' "Простые, Сложные, Интерактивные" ');
-let screenPrice  = +prompt(' “Сколько будет стоить данная работа?” ', '12000');
-const rollback = 65;
+const lang = document.documentElement.lang;
 
-// Задание 7
+if ( lang === 'ru') {
+    console.log('Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье');
+} else if (lang === 'en') {
+    console.log('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+} else {
+    console.log('Непредвиденное значение!');
+}
 
-let service1  = prompt(' “Какой дополнительный тип услуги нужен?” ');
-let servicePrice1  = +prompt(' “Сколько это будет стоить?” ');
-let service2  = prompt(' “Какой дополнительный тип услуги нужен?” ');
-let servicePrice2  = +prompt(' “Сколько это будет стоить?” ');
+switch(lang){
+    case 'ru':
+        console.log('Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье');
+        break;
+    case 'en':
+        console.log('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday');
+        break;
+    default:
+        console.log('Непредвиденное значение!');
+}
 
-let fullPrice = Number(screenPrice) + Number(servicePrice1) + Number(servicePrice2);
+let arrLang = [];
+arrLang.ru = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'];
+arrLang.en = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+console.log(arrLang[lang]);
 
-// fullPrice amount
+let namePerson = prompt(' Введите ваше имя. ', 'Артем, Александр');
 
-let servicePrcentPrice = Math.ceil(fullPrice-fullPrice * (rollback/100))
-
-// Data
-
-if (fullPrice >= 30000) {
-    console.log('Даем скидку в 10%');
-  } else if (fullPrice >= 15000 && fullPrice < 30000) {
-    console.log('Даем скидку в 5%');
-  } else if (fullPrice >= 0 && fullPrice < 15000) {
-    console.log('Скидка не предусмотрена');
-  } else {
-    console.log('Что-то пошло не так');
-  }
-
-console.log(title, fullPrice, adaptive);
-
-// title, fullPrice and adaptive
-
-console.log('“Стоимость верстки экранов '+ screenPrice +' рублей/ долларов/гривен/юани”' );
-
-// PriceScreens
-
-console.log('“Стоимость разработки сайта '+ fullPrice +' рублей/ долларов/гривен/юани”' );
-
-// FullPrice
-
-console.log(screens.length);
-
-console.log(screens.toLowerCase());
-
-console.log(screens.split());
-
-console.log(screens.toLowerCase().split());
-
-// Screens
-
-console.log(fullPrice * (rollback/100));
-
-// Rollback
-
-console.log(service1, servicePrice1);
-
-console.log(service2, servicePrice2);
-
-console.log(servicePrcentPrice);
-
-
+console.log((namePerson === 'Артем') ? 'директор' :
+    (namePerson === 'Александр') ? 'преподаватель' :
+    'студент');
