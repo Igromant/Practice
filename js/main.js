@@ -1,66 +1,99 @@
 'use strict';
 
-let title = prompt(' “Как называется ваш проект?” ');
-let adaptive = prompt(' “Нужен ли адаптив на сайте? ”', 'true/false');
-let screens = prompt(' “Какие типы экранов нужно разработать?” ', ' "Простые, Сложные, Интерактивные" ');
-let screenPrice  = +prompt(' “Сколько будет стоить данная работа?” ', '12000');
+//Объявление переменных
+
+let title
+let adaptive
+let screens
+let screenPrice
 const rollback = 65;
+let service1
+let servicePrice1
+let service2
+let servicePrice2
+let fullPrice
+let servicePrcentPrice
+let allServicePrices
 
-// Задание 7
 
-let service1  = prompt(' “Какой дополнительный тип услуги нужен?” ');
-let servicePrice1  = +prompt(' “Сколько это будет стоить?” ');
-let service2  = prompt(' “Какой дополнительный тип услуги нужен?” ');
-let servicePrice2  = +prompt(' “Сколько это будет стоить?” ');
 
-let fullPrice = Number(screenPrice) + Number(servicePrice1) + Number(servicePrice2);
+//Функции
 
-// fullPrice amount
+const ask = function() {
+    title = prompt(' “Как называется ваш проект?” ');
+    screens = prompt(' “Какие типы экранов нужно разработать?” ', ' "Простые, Сложные, Интерактивные" ');
+    screenPrice  = +prompt(' “Сколько будет стоить данная работа?” ', '12000');
 
-let servicePrcentPrice = Math.ceil(fullPrice-fullPrice * (rollback/100))
+    adaptive = confirm(' “Нужен ли адаптив на сайте? ”');
+}
 
-// Data
+const getAllServicePrices = function() {
+    let allPrices = 0;
 
-if (fullPrice >= 30000) {
-    console.log('Даем скидку в 10%');
-  } else if (fullPrice >= 15000 && fullPrice < 30000) {
-    console.log('Даем скидку в 5%');
-  } else if (fullPrice >= 0 && fullPrice < 15000) {
-    console.log('Скидка не предусмотрена');
+    for (let i = 0; i < 2; i++) {
+
+        if( i == 0 ){
+            service1  = prompt(' “Какой дополнительный тип услуги нужен?” ');
+        } else if ( i == 1 ){
+            service2  = prompt(' “Какой дополнительный тип услуги нужен?” ');
+        }
+
+        allPrices += +prompt(' “Сколько это будет стоить?” ');
+        
+    }
+    return allPrices
+}
+
+const showTypeOf = function(variable) {
+    console.log(variable, typeof variable);
+}
+
+const getRollbackMessage = function(price) {
+    if (price >= 30000) {
+        return 'Даем скидку в 10%'
+  } else if (price >= 15000 && price < 30000) {
+    return 'Даем скидку в 5%'
+  } else if (price >= 0 && price < 15000) {
+    return 'Скидка не предусмотрена'
   } else {
-    console.log('Что-то пошло не так');
+    return 'Что-то пошло не так'
   }
+}
 
-console.log(title, fullPrice, adaptive);
+function getFullPrice(a,b) {
+    return Number(a)+Number(b)
+} 
 
-// title, fullPrice and adaptive
+const getServicePercentPrices = function(a,b) {
+    return Math.ceil(a-a*(b/100))
+}
 
-console.log('“Стоимость верстки экранов '+ screenPrice +' рублей/ долларов/гривен/юани”' );
+const getTitle = function() {
+    return title.trim()[0].toUpperCase() + title.trim().substring(1).toLowerCase()
+}
 
-// PriceScreens
 
-console.log('“Стоимость разработки сайта '+ fullPrice +' рублей/ долларов/гривен/юани”' );
 
-// FullPrice
+ask();
+title = getTitle();
+allServicePrices = getAllServicePrices();
+fullPrice = getFullPrice(screenPrice,allServicePrices);
+servicePrcentPrice = getServicePercentPrices(fullPrice,rollback);
+
+
+
+
+//Вывод в консоль
+
+showTypeOf(title);
+showTypeOf(fullPrice);
+showTypeOf(adaptive);
 
 console.log(screens.length);
 
-console.log(screens.toLowerCase());
-
-console.log(screens.split());
-
-console.log(screens.toLowerCase().split());
-
-// Screens
-
-console.log(fullPrice * (rollback/100));
-
-// Rollback
-
-console.log(service1, servicePrice1);
-
-console.log(service2, servicePrice2);
-
 console.log(servicePrcentPrice);
+console.log(allServicePrices);
+console.log(getRollbackMessage(fullPrice));
 
-
+console.log('“Стоимость верстки экранов '+ screenPrice +' рублей/ долларов/гривен/юани”' );
+console.log('“Стоимость разработки сайта '+ fullPrice +' рублей/ долларов/гривен/юани”' );
