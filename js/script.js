@@ -1,3 +1,5 @@
+'use strict';
+
 // Объявление переменных
 
 title = document.getElementsByTagName('h1')
