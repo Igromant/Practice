@@ -1,111 +1,60 @@
 'use strict';
 
-//Объявление переменных и внутрение операции
+// Объявление переменных времени
 
-const appData = {
-    title: '',
-    adaptive: true,
-    screens: '',
-    screenPrice: 0,
-    rollback: 65,
-    service1: '',
-    service2: '',
-    fullPrice: 0,
-    servicePrcentPrice: 0,
-    allServicePrices: 0,
+const timeDisplay = () => {
+    const week = ['Воскресенье, ', 'Понедельник, ', 'Вторник, ', 'Среда, ',
+        'Четверг, ', 'Пятница, ', 'Суббота, '];
+    const month = [' января ', ' февраля ', ' марта ',
+        ' апреля ', ' мая ', ' июня ',
+        ' июля ', ' августа ', ' сентября ',
+        ' октября ', ' ноября ', ' декабря '];
+    const date = new Date();
 
-    start: function () {
-        appData.asking();
-        appData.title = appData.getTitle();
-        appData.allServicePrices = appData.getAllServicePrices();
-        appData.fullPrice = appData.getFullPrice(appData.screenPrice,appData.allServicePrices);
-        appData.servicePrcentPrice = appData.getServicePercentPrices(appData.fullPrice,appData.rollback);
+// Объявление функций и условий для работы часов 
 
-        appData.logger()
-      },
+    const addZero = elem => {
+        if (String(elem).length === 1) { return '0' + elem; } else { return String(elem); }
+    };
 
-    asking: function() {
-        appData.title = prompt(' “Как называется ваш проект?” ', 'Halograme');
-        appData.screens = prompt(' “Какие типы экранов нужно разработать?” ', 'Простые, Сложные, Интерактивные');
-    
-        do {
-            appData.screenPrice  = prompt(' “Сколько будет стоить данная работа?” ');
-        } while (!appData.isNumber(appData.screenPrice))
-    
-        appData.adaptive = confirm(' “Нужен ли адаптив на сайте? ” ');
-    },
+// Наименование переменных часы, минуты и секунды
 
-    isNumber: function(num) {
-    return !isNaN(parseFloat(num)) && isFinite(num)
-    },
-    
-    getAllServicePrices: function() {
-    let sum = 0
+    const changeEnding = (num, timeElem = '') => {
+        const textVariant = (timeElem === 'h' ? [' час ', ' часа ', ' часов '] :
+            timeElem === 'm' ? [' минута ', ' минуты ', ' минут '] :
+            [' секунда ', ' секунды ', ' секунд ']);
+        const n = num % 10;
+        return num > 4 && num < 20 ? num + textVariant[2] : 
+            n === 1 ? num + textVariant[0] : 
+            n > 1 && n < 5 ? num + textVariant[1] :
+            num + textVariant[2];
+    };
+  
+// Наименование переменных дни недели, месяц и год 
 
-    for (let i = 0; i < 2; i++) {
-    let price = 0
+    const textTime = 'Сегодня ' + week[date.getDay()] + date.getDay() + month[date.getMonth()] + 
+    date.getFullYear() + ' года, ' + changeEnding(date.getHours(), 'h') + 
+    changeEnding(date.getMinutes(), 'm') + changeEnding(date.getSeconds());
+    const time = addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ':' + addZero(date.getSeconds()) + ' ' + 
+    addZero(date.getDay()) + '.' + addZero(date.getMonth()) + '.' + date.getFullYear();
 
-        if( i === 0 ){
-            appData.service1 = prompt(' “Какой дополнительный тип услуги нужен?” ');
-        } else if ( i === 1 ){
-            appData.service2 = prompt(' “Какой дополнительный тип услуги нужен?” ');
-        }
+    document.querySelector('.text-time').textContent = textTime;
+    document.querySelector('.time').textContent = time;
 
-        do {
-            price = prompt('Сколько это будет стоить?');
-          } while (!appData.isNumber(price))
-      
-          sum += +price
-      
-    }
-    return sum
-    },
+// Вывод часов в консоль
 
-    getRollbackMessage: function(price) {
-    if (price >= 30000) {
-        return 'Даем скидку в 10%'
-      } else if (price >= 15000 && price < 30000) {
-        return 'Даем скидку в 5%'
-      } else if (price >= 0 && price < 15000) {
-        return 'Скидка не предусмотрена'
-      } else {
-        return 'Что-то пошло не так'
-      }
-    },
+    console.clear();
+    console.log(textTime);
+    console.log(time);
+};
 
-    getFullPrice: function(a,b) {
-        return Number(a)+Number(b)
-    },
-    
-    getServicePercentPrices: function(a,b) {
-        return Math.ceil(a-a*(b/100))
-    },
-    
-    getTitle: function() {
-        return appData.title.trim()[0].toUpperCase() + appData.title.trim().substring(1).toLowerCase()
-    },
-    logger: function() {    
-    console.log('title: ',typeof appData.title);
-    console.log('screenPrice: ',typeof appData.screenPrice);
-    console.log('adaptive: ',typeof appData.adaptive);
+let elem = document.createElement('div');
+elem.classList.add('text-time');
+document.body.appendChild(elem);
 
-    console.log('screens: ',appData.screens.length);
+elem = document.createElement('div');
+elem.classList.add('time');
+document.body.appendChild(elem);
+console.dir(elem);
 
-    console.log('servicePrcentPrice: ',appData.servicePrcentPrice);
-    console.log('allServicePrices: ',appData.allServicePrices);
-    console.log(appData.getRollbackMessage(appData.fullPrice));
-
-    console.log('“Стоимость верстки экранов '+ appData.screenPrice +' рублей/долларов/гривен/юани”' );
-    console.log('“Стоимость разработки сайта '+ appData.fullPrice +' рублей/долларов/гривен/юани”' );
-
-        console.log(' Свойства appData ')
-        for (let key in appData) {
-            console.log( "Ключ: " + key + " Значение: " + appData[key] );
-        }
-    }
-}
-
-//Вывод 
-
-appData.start();
-
+setInterval(timeDisplay, 1000);
