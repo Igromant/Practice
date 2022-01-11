@@ -13,37 +13,56 @@ const isNumber = function(num) {
 
 // конструкция игры
  const start = () => {
-     let rNum = getRandomInt(100);
+
+    let rNum = getRandomInt(100);
+
+    console.log(' Секретное число: ', rNum);
+
+    let attempts = 10;
 
      const game = () => {
-            const num = +prompt('"Угадай число от 1 до 100"');
+
+        attempts--;
+
+        if (attempts < 0) {
+            if (confirm(' "Попытки закончились, хотите сыграть еще?" ')) {
+                start();
+            } else {
+                alert(' "Игра окончена" ');
+                return;
+            }
+        } else {
+
+        const num = +prompt('"Угадай число от 1 до 100"');
 
         if (num === null ) {
             alert('"Игра окончена"');
-            return
+            return;
         }
 
         if (isNumber(num)) {
             const realNum = +num;
             if( realNum > rNum ){
-                alert(' "Загаданное число меньше" ');
+                alert(' "Загаданное число меньше, осталось ' + attempts + ' попыток" ');
                 game();
             } else if( realNum < rNum ){
-                alert(' "Загаданное число больше" ');
+                alert(' "Загаданное число больше, осталось ' + attempts + ' попыток" ');
                 game();
             } else {
-                if (confirm('"Поздравляю, Вы угадали!!!" ( Сыграем ещё ? )')) {
+                if (confirm(' "Поздравляю, Вы угадали!!! Хотели бы сыграть еще?" ')) {
                     start();
                 } else {
                     alert(' "Игра окончена" ');
-                    return
+                    return;
                 }
             }
         } else{
             alert("Введи число!");
             game();
+            }
         }
-     }
+    }
+     console.dir(game);
      game();
  }
 
