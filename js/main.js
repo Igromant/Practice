@@ -1,60 +1,73 @@
 'use strict';
 
-// Объявление переменных времени
+// Востанавливаем порядок книг
 
-const timeDisplay = () => {
-    const week = ['Воскресенье, ', 'Понедельник, ', 'Вторник, ', 'Среда, ',
-        'Четверг, ', 'Пятница, ', 'Суббота, '];
-    const month = [' января ', ' февраля ', ' марта ',
-        ' апреля ', ' мая ', ' июня ',
-        ' июля ', ' августа ', ' сентября ',
-        ' октября ', ' ноября ', ' декабря '];
-    const date = new Date();
+const books = document.querySelectorAll('.books'),
+    arrBooks = document.querySelectorAll('.book');
+const arr = Object.keys(arrBooks).sort((prev, next) => {
+    if (arrBooks[prev].firstElementChild.innerText > arrBooks[next].firstElementChild.innerText) { 
+        return 1; }
+    if (arrBooks[prev].firstElementChild.innerText < arrBooks[next].firstElementChild.innerText) { 
+        return -1; }
+});
+for (let i = 0; i< arr.length; i++){
+    books[0].appendChild(arrBooks[arr[i]]);
+}
 
-// Объявление функций и условий для работы часов 
+// Заменяем картинку заднего фона на другую из папки image
 
-    const addZero = elem => {
-        if (String(elem).length === 1) { return '0' + elem; } else { return String(elem); }
+document.querySelector('body').style.backgroundImage = 'url(./image/you-dont-know-js.jpg)'; 
+
+// Исправить заголовок в книге 3
+
+books[0].children[2].querySelector('h2').querySelector('a').text = 'Книга 3. this и Прототипы Объектов';
+
+// Удалить рекламу со страницы
+
+document.querySelector('.adv').remove();
+
+// Восстановить порядок глав во второй и пятой книге 
+
+const sortChapter = collection => {
+    const sortElements = arr => {
+        const arrInd = Object.keys(arr).sort((prev, next) => {
+            if (arr[prev].textContent > arr[next].textContent) {
+                return 1; }
+            if (arr[prev].textContent < arr[next].textContent) { 
+                return -1; }
+            });
+        let arrNew = [];
+        for (let i = 0; i < arrInd.length; i++){
+            arrNew.push(arr[arrInd[i]]);
+        }
+        return arrNew;
     };
 
-// Наименование переменных часы, минуты и секунды
-
-    const changeEnding = (num, timeElem = '') => {
-        const textVariant = (timeElem === 'h' ? [' час ', ' часа ', ' часов '] :
-            timeElem === 'm' ? [' минута ', ' минуты ', ' минут '] :
-            [' секунда ', ' секунды ', ' секунд ']);
-        const n = num % 10;
-        return num > 4 && num < 20 ? num + textVariant[2] : 
-            n === 1 ? num + textVariant[0] : 
-            n > 1 && n < 5 ? num + textVariant[1] :
-            num + textVariant[2];
-    };
-  
-// Наименование переменных дни недели, месяц и год 
-
-    const textTime = 'Сегодня ' + week[date.getDay()] + date.getDay() + month[date.getMonth()] + 
-    date.getFullYear() + ' года, ' + changeEnding(date.getHours(), 'h') + 
-    changeEnding(date.getMinutes(), 'm') + changeEnding(date.getSeconds());
-    const time = addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ':' + addZero(date.getSeconds()) + ' ' + 
-    addZero(date.getDay()) + '.' + addZero(date.getMonth()) + '.' + date.getFullYear();
-
-    document.querySelector('.text-time').textContent = textTime;
-    document.querySelector('.time').textContent = time;
-
-// Вывод часов в консоль
-
-    console.clear();
-    console.log(textTime);
-    console.log(time);
+    const elem = collection.querySelectorAll('li');
+    let arrChapter = [],
+        arrApp = [];
+    elem.forEach(el => {
+        if (el.textContent.indexOf('Введение') > -1) {
+            collection.insertBefore(el, elem[0]);
+        }
+        if (el.textContent.indexOf('Предисловие') > -1) {
+            collection.insertBefore(el, elem[1]);
+        }
+        if (el.textContent.indexOf('Глава') > -1) { arrChapter.push(el); }
+        if (el.textContent.indexOf('Приложение') > -1) { arrApp.push(el); }
+    });
+    arrChapter = sortElements(arrChapter);
+    arrChapter.forEach(el => { collection.appendChild(el); });
+    arrApp = sortElements(arrApp);
+    arrApp.forEach(el => { collection.appendChild(el); });
 };
 
-let elem = document.createElement('div');
-elem.classList.add('text-time');
-document.body.appendChild(elem);
+sortChapter(books[0].children[1].querySelector('ul'));
+sortChapter(books[0].children[4].querySelector('ul'));
 
-elem = document.createElement('div');
-elem.classList.add('time');
-document.body.appendChild(elem);
-console.dir(elem);
+// В шестой книге добавить главу “Глава 8: За пределами ES6” и поставить её в правильное место
 
-setInterval(timeDisplay, 1000);
+let child = document.createElement('li');
+child.innerText = 'Глава 8: За пределами ES6';
+books[0].children[5].querySelector('ul').appendChild(child);
+sortChapter(books[0].children[5].querySelector('ul'));
