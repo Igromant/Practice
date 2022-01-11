@@ -1,5 +1,5 @@
 let num = 266219;
-// переменная num
+// Объявление переменной num
 
 console.log('1) ',num);
 
@@ -20,3 +20,4 @@ console.log('3) ', raising);
 // возведение в 3 степень
 
 console.log('4) ', raising.toString().substr(0,2));
+// Вывод в консоль
