@@ -1,3 +1,4 @@
+// Объявление переменных
 const tititle = 0;
 const screens = 1;
 const screenPrice  = 2;
