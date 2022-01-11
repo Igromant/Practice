@@ -1,9 +1,10 @@
 'use strict';
 
-//Доп Задание
+// Объявление переменной
 
 let offer = prompt('Введите какое либо предложение.');
 
+// построение условия
 const fun = (arg) => {
     let res = 'Ожидается появление строки...';
     if(typeof arg == "string"){
@@ -18,6 +19,8 @@ const fun = (arg) => {
 
     return res;
 }
+
+// вывод вконсоль
 
 console.log('fun(): ', fun(5));
 console.log('fun(): ', fun('    Строка менее 30 символов     '));
