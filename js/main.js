@@ -2,10 +2,10 @@
 
 //Объявление переменных
 
-let title
-let adaptive
-let screens
-let screenPrice
+let title = prompt(' “Как называется ваш проект?” ');
+let screens = prompt(' “Какие типы экранов нужно разработать?” ', ' "Простые, Сложные, Интерактивные" ');
+let screenPrice = +prompt(' “Сколько будет стоить данная работа?” ', '12000');
+let adaptive = confirm(' “Нужен ли адаптив на сайте? ”');
 const rollback = 65;
 let service1
 let servicePrice1
@@ -19,16 +19,8 @@ let allServicePrices
 
 //Функции
 
-const ask = function() {
-    title = prompt(' “Как называется ваш проект?” ');
-    screens = prompt(' “Какие типы экранов нужно разработать?” ', ' "Простые, Сложные, Интерактивные" ');
-    screenPrice  = +prompt(' “Сколько будет стоить данная работа?” ', '12000');
-
-    adaptive = confirm(' “Нужен ли адаптив на сайте? ”');
-}
-
 const getAllServicePrices = function() {
-    let allPrices = 0;
+    let sum = 0;
 
     for (let i = 0; i < 2; i++) {
 
@@ -41,7 +33,7 @@ const getAllServicePrices = function() {
         allPrices += +prompt(' “Сколько это будет стоить?” ');
         
     }
-    return allPrices
+    return sum
 }
 
 const showTypeOf = function(variable) {
@@ -74,7 +66,6 @@ const getTitle = function() {
 
 
 
-ask();
 title = getTitle();
 allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(screenPrice,allServicePrices);
