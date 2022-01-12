@@ -2,15 +2,15 @@
 
 // Объявление переменных
 
-title = document.getElementsByTagName('h1')
-button = document.getElementsByClassName('handler_btn')
-buttonTiming = document.querySelector('.screen-btn')
-percent = document.querySelectorAll('.other-items.percent')
-number = document.querySelectorAll('.other-items.number')
-range = document.querySelector('.rollback input')
-span = document.querySelector('.rollback .range-value')
-input = document.getElementsByClassName('total-input')
-let = document.querySelectorAll('.screen')
+const title = document.getElementsByTagName('h1')
+const button = document.getElementsByClassName('handler_btn')
+const buttonTiming = document.querySelector('.screen-btn')
+const percent = document.querySelectorAll('.other-items.percent')
+const number = document.querySelectorAll('.other-items.number')
+const range = document.querySelector('.rollback input')
+const span = document.querySelector('.rollback .range-value')
+const input = document.getElementsByClassName('total-input')
+let screen = document.querySelectorAll('.screen')
 
 //Вывод переменных в консоль
 
@@ -21,7 +21,7 @@ console.log(percent,number);
 console.log(range);
 console.log(span);
 console.log(input);
-console.log(let);
+console.log(screen);
 
 
 /*
