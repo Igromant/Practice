@@ -24,6 +24,7 @@ let screens = document.querySelectorAll('.screen')
 const appData = {
   title: '',
   screens: [],
+  countScreen: 0,
   screenPrice: 0,
   adaptive: true,
   rollback: 0,
@@ -39,7 +40,10 @@ const appData = {
     startBtn.addEventListener('click', appData.start)
     buttonPlus.addEventListener('click', appData.addScreenBlock)
 
-    
+    inputRange.addEventListener('input', function(event) {
+      inputRangeValue.textContent = event.target.value + " %";
+      appData.rollback = event.target.value;
+    })
 
   },
 
@@ -60,6 +64,7 @@ const appData = {
 
   showResult: function () {
     total.value = appData.screenPrice
+    totalCount.value = appData.countScreen
     totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber
     fullTotalCount.value = appData.fullPrice
     totalCountRollback.value = appData.servicePercentPrice
@@ -78,7 +83,8 @@ const appData = {
       appData.screens.push({
         id: index, 
         name: selectName, 
-        price: +select.value*+input.value
+        price: +select.value*+input.value,
+        count: +input.value
       })
     })
     console.log(appData.screens)
@@ -116,6 +122,10 @@ const appData = {
       appData.screenPrice += +screen.price
     }
 
+    for (let screen of appData.screens) {
+      appData.countScreen += +screen.count;
+    }
+
     for(let key in appData.servicesNumber) {
       appData.servicePricesNumber += appData.servicesNumber[key]
     }
@@ -127,20 +137,6 @@ const appData = {
     appData.fullPrice =  +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent
 
     appData.servicePercentPrice =  Math.ceil(appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)))
-    
-    range.addEventListener('input', rangeChange);
-  },
-  
-  getRollbackMessage: function(price) {
-    if (price >= 30000) {
-      return "Даем скидку в 10%"
-    } else if (price >= 15000 && price < 30000) {
-      return "Даем скидку в 5%"
-    } else if (price >= 0 && price < 15000) {
-      return "Скидка не предусмотрена"
-    } else {
-      return "Что-то пошло не так"
-    }
   },
 //   logger: function () {
 //     console.log("allServicePrices", appData.allServicePrices);
