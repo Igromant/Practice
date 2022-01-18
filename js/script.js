@@ -36,7 +36,6 @@ const appData = {
 
   init: function () {
     appData.addTitle()
-    // appData.watchBtn()
     startBtn.addEventListener('click', appData.start)
     buttonPlus.addEventListener('click', appData.addScreenBlock)
 
@@ -54,12 +53,20 @@ const appData = {
   start: function () {
     appData.addScreens()
     appData.addServices()
-
     appData.addPrice()
 
     //appData.logger()
     // console.log(appData);
+    appData.checkInp()
     appData.showResult()
+  },
+
+  checkInp: function () {
+    for (let i = 0; i < screens.length; i++) {
+      if (screens[i].querySelector("select").selectedIndex === 0 ||screens[i].querySelector("input").value === "") {
+        startBtn.disabled = true;
+      } 
+    } 
   },
 
   showResult: function () {
