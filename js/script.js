@@ -22,6 +22,13 @@ const totalCountRollback = document.getElementsByClassName('total-input')[4]
 
 let screens = document.querySelectorAll('.screen')
 
+const checkCms = document.getElementById('cms-open')
+const cmsVar = document.getElementsByClassName('hidden-cms-variants')[0]
+
+const cmsSelect = document.getElementById('cms-select')
+const cmsOther = document.querySelectorAll('.hidden-cms-variants .main-controls__input')
+const cmsInputBl = document.querySelector('.hidden-cms-variants .main-controls__input')
+
 // Объявление базы данных
 
 const appData = {
@@ -33,12 +40,17 @@ const appData = {
   rollback: 0,
   servicePricesPercent: 0,
   servicePricesNumber: 0,
+  servicePricesCms: 0,
   fullPrice: 0,
   servicesPercent: {},
   servicesNumber: {},
+  serviceCms: {},
 
   init() {
     this.addTitle();
+
+    this.funCms();
+    
 
     startBtn.addEventListener("click", this.start.bind(appData));
     resetBtn.addEventListener("click", this.reset.bind(appData));
@@ -54,6 +66,37 @@ const appData = {
   addTitle() {
     document.title = title.textContent
   },
+
+  funCms() {
+    checkCms.addEventListener('input', () => {
+      if (checkCms.checked) {
+        cmsVar.style.display = '';
+      } else {
+        cmsVar.style.display = 'none';
+      }
+    })
+
+          cmsOther.forEach((item) => {
+            const choice = item.querySelector('option')
+
+            cmsSelect.addEventListener("change", () => {
+              if (cmsSelect.value == 'other') {
+
+                cmsInputBl.style.display = ''
+                
+
+              }else if (cmsSelect.value == '50'){
+
+                cmsInputBl.style.display = 'none'
+                this.serviceCms[choice] = +cmsSelect.value
+
+              } else {
+                cmsInputBl.style.display = 'none'
+              }
+             
+            });
+        })
+    },
 
 // Функции кнопки старт
 
@@ -76,6 +119,8 @@ const appData = {
     startBtn.style.display = ''
     resetBtn.style.display = 'none'
 
+    cmsVar.style.display = 'none';
+
     this.title = '';
     this.screens = [];
     this.countScreen = 0;
@@ -84,10 +129,12 @@ const appData = {
     this.rollback = 0;
     this.servicePricesPercent = 0;
     this.servicePricesNumber = 0;
+    this.servicePricesCms = 0;
     this.servicePercentPrice = 0;
     this.fullPrice = 0;
     this.servicesPercent = {};
     this.servicesNumber = {};
+    this.serviceCms = {};
 
     total.value = 0;
     totalCount.value = 0;
@@ -131,11 +178,18 @@ const appData = {
   btnCheck() {
 
     document.querySelectorAll("input[type=checkbox]").forEach((item) => {
-      if (this.servicePricesPercent + this.servicePricesNumber != 0) {
+      if (this.servicePricesPercent + this.servicePricesNumber + this.servicePricesCms != 0) {
         item.disabled = true;
+        cmsVar.disabled = true;
+        cmsSelect.disabled = true;
+        
       } else {
         item.disabled = false;
         item.checked = false;
+        cmsVar.disabled = false;
+        cmsSelect.value = "";
+        cmsSelect.disabled = false;
+        
       }
     });
 
@@ -170,7 +224,7 @@ const appData = {
   showResult() {
     total.value = this.screenPrice;
     totalCount.value = this.countScreen;
-    totalCountOther.value = this.servicePricesPercent + this.servicePricesNumber;
+    totalCountOther.value = this.servicePricesPercent + this.servicePricesNumber + this.servicePricesCms;
     fullTotalCount.value = this.fullPrice;
     totalCountRollback.value = this.servicePercentPrice;
   },
@@ -217,7 +271,11 @@ const appData = {
           this.servicesNumber[label.textContent] = +input.value
         }
       })
+        
+  
   },
+
+ 
 
   // Добавление поля 
 
@@ -248,10 +306,16 @@ const appData = {
       this.servicePricesPercent += this.screenPrice * (this.servicesPercent[key] / 100);
     }
 
-    this.fullPrice =  +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent;
+    for(let key in this.serviceCms) {
+      this.servicePricesCms += this.screenPrice * (this.serviceCms[key] / 100);
+    }
+
+    this.fullPrice =  +this.screenPrice + this.servicePricesNumber + this.servicePricesPercent + this.servicePricesCms;
 
     this.servicePercentPrice =  Math.ceil(this.fullPrice - (this.fullPrice * (this.rollback / 100)));
   },
+
+ 
   // logger: function () {
 //     console.log("allServicePrices", appData.allServicePrices);
 
