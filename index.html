@@ -5,12 +5,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="./js/script.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <script src="./js/script.js" defer></script>
-</body>
+    <form class="controler" onsumbit="return onOr()">
+      <input class="inp" id="inp-1" type="text" name="name" placeholder="name">
+      <input class="inp" id="inp-2" type="text" name="description" placeholder="description">
+      <input class="inp" id="inp-3" type="text" name="view" placeholder="view">
+      <input class="inp" id="inp-4" type="text" name="year" placeholder="year">
+      <select class="inp" id="inp-5" name="nameClass">
+        <option value="secondClass">secondClass</option>
+        <option value="firstClass">firstClass</option>
+      </select>
+      <input class="inp" id="inp-6" type="text" name="size" placeholder="size">
+      <input class="inp" id="inp-8" type="checkbox" name="checkbox" value="true" checked>
+      <input class="inp" id="inp-7" type="text" name="applicationArea" placeholder="applicationArea">
+      <button onclick="got()" id="send" class="btn" type="button">Send</button>
+    </form>
+    <table class="table">
+        <tbody id="table-id">
+        <tr id="table-tr">
+          <td id="td-1">rose</td>
+          <td id="td-2">common white rose</td>
+          <td id="td-3">common</td>
+          <td id="td-4">2 weeks</td>
+          <td id="td-5">secondClass</td>
+          <td id="td-6">7 sm</td>
+          <td id="td-7">true</td>
+          <td id="td-8">Europe</td>
+          <td><button class="btn" onclick="del()">Delete</button></td>
+        </tr>
+        <!-- <tr>
+          <td>Birch</td>
+          <td>common birch</td>
+          <td>common</td>
+          <td>10 years</td>
+          <td>firstClass</td>
+          <td>4 sm</td>
+          <td>true</td>
+          <td>Europe</td>
+          <td><button class="btn">Delete</button></td>
+        </tr>
+        <tr>
+          <td>Buckthorn</td>
+          <td>buckthorn alder</td>
+          <td>alder</td>
+          <td>2 years</td>
+          <td>secondClass</td>
+          <td>15 sm</td>
+          <td>true</td>
+          <td>Europe</td>
+          <td><button class="btn">Delete</button></td>
+        </tr> -->
+      </tbody>
+    </table>
+  </body>
 
 </html>
