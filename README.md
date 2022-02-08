@@ -50,6 +50,17 @@
 
 ## [Урок - Lesson 15 extra](https://github.com/Igromant/Practice/tree/lesson15.ex)
 
+## [Урок - Lesson 16](https://github.com/Igromant/Practice/tree/lesson16)
+
+# [Урок - Lesson 16 extra lessons]
+## [Задание.1](https://codepen.io/igromant/pen/oNoLeVd)
+## [Задание.2](https://codepen.io/igromant/pen/OJObqMV)
+## [Задание.3](https://codepen.io/igromant/pen/YzENaXd)
+
+
+## [Урок - Lesson 17](https://github.com/Igromant/Practice/tree/lesson17)
+
+
 # Еще дописываю список.
 
 
