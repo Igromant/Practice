@@ -57,7 +57,7 @@
 ## [Задание.2](https://codepen.io/igromant/pen/OJObqMV)
 ## [Задание.3](https://codepen.io/igromant/pen/YzENaXd)
 
-
+# -------------------
 ## [Урок - Lesson 17](https://github.com/Igromant/Practice/tree/lesson17)
 
 
