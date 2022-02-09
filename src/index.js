@@ -8,6 +8,7 @@ import slider from './modules/slider'
 import calculator from './modules/calculator'
 
 
+
 timer('28 Feb 2022')
 menu()
 modal()

@@ -1,39 +1,33 @@
+import { animate } from "./help";
+
 const modal = () => {
-  // Объявление переменных
+  //Объявление переменных
   const modal = document.querySelector(".popup");
-  const buttons = document.querySelectorAll(".popup-btn")
+  const buttons = document.querySelectorAll(".popup-btn");
+  const popupContent = document.querySelector(".popup-content");
 
-  // Функция открытия модального окна с анимацией
-  const openModal = () => {
-    modal.style.display = "block";
-    document.querySelector(".popup-content").animate(
-      [
-        {
-          opacity: 0,
-          transform: "translate3D(0, -300px, 0)",
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        duration: 500,
-      }
-    );
-  };
-
-  // События для кнопок
+  //Условие
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (window.outerWidth > 768) {
-        openModal();
+        modal.style.display = "block";
+        animate({
+          duration: 500,
+          timing(timeFraction) {
+            return timeFraction;
+          },
+          draw(progress) {
+            popupContent.style.opacity = progress;
+            popupContent.style.top = 10 * progress + "%";
+          },
+        });
       } else {
         modal.style.display = "block";
       }
     });
   });
 
-  // Событие модального окна
+  // Событие по клику
   modal.addEventListener("click", (e) => {
     if (
       !e.target.closest(".popup-content") ||
@@ -43,5 +37,4 @@ const modal = () => {
     }
   });
 };
-
 export default modal;
