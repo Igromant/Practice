@@ -81,10 +81,7 @@
 
 ## [Урок - Lesson 25](https://github.com/Igromant/Practice/tree/lesson25)
 
+## [Урок - Lesson 26](https://github.com/Igromant/Practice/tree/lesson26)
 
-# Еще дописываю список.
-
-
-
-
+## [Урок - Lesson 27](https://github.com/Igromant/Practice/tree/lesson27)
 
