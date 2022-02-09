@@ -1,4 +1,4 @@
-const formsValidation = () => {
+const formValidation = () => {
     //Объявление перменных
     const calcSquareInput = document.querySelector(".calc-square");
     const calcCountInput = document.querySelector(".calc-count");
@@ -47,4 +47,4 @@ const formsValidation = () => {
     });
   };
   
-  export default formsValidation;
+  export default formValidation;
