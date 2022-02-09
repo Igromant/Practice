@@ -6,6 +6,7 @@ import tabs from './modules/tabs'
 import scroll from './modules/scroll'
 import slider from './modules/slider'
 import calculator from './modules/calculator'
+import sendForms from './modules/sendForms'
 
 
 
@@ -17,3 +18,30 @@ tabs()
 slider()
 calculator()
 scroll()
+sendForm({
+    formId: "form1",
+    someElem: [
+      {
+        type: "block",
+        id: "total",
+      },
+    ],
+  });
+  sendForm({
+    formId: "form2",
+    someElem: [
+      {
+        type: "block",
+        id: "total",
+      },
+    ],
+  });
+  sendForm({
+    formId: "form3",
+    someElem: [
+      {
+        type: "block",
+        id: "total",
+      },
+    ],
+  });
