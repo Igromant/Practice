@@ -29,9 +29,15 @@ const timer = (deadline) => {
       timerMinutes.textContent = addZero(getTime.minutes);
       timerSeconds.textContent = addZero(getTime.seconds);
     };
-    if (getTimeRemaining > 0) {
-      updateClock();
-    }
+        // Время вышло
+        setTimeout(() => {
+          let getTime = getTimeRemaining();
+          if (getTime.timeRemaining > 0) {
+            updateClock();
+          } else if (getTime.timeRemaining === 0) {
+            clearTimeout(updateClock);
+          }
+        });
 
     // Обнавление интервала
     setInterval(() => {
