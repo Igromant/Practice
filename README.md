@@ -52,13 +52,34 @@
 
 ## [Урок - Lesson 16](https://github.com/Igromant/Practice/tree/lesson16)
 
+# -------------------
+
 # [Урок - Lesson 16 extra lessons]
 ## [Задание.1](https://codepen.io/igromant/pen/oNoLeVd)
 ## [Задание.2](https://codepen.io/igromant/pen/OJObqMV)
 ## [Задание.3](https://codepen.io/igromant/pen/YzENaXd)
 
 # -------------------
+
 ## [Урок - Lesson 17](https://github.com/Igromant/Practice/tree/lesson17)
+
+## [Урок - Lesson 17 extra](https://github.com/Igromant/Practice/tree/lesson17.1)
+
+## [Урок - Lesson 18](https://github.com/Igromant/Practice/tree/lesson18)
+
+## [Урок - Lesson 18 extra](https://github.com/Igromant/Practice/tree/lesson18.ex)
+
+## [Урок - Lesson 19 - 20 and extra](https://github.com/Igromant/Practice/tree/lesson19-20)
+
+## [Урок - Lesson 21](https://github.com/Igromant/Practice/tree/lesson21)
+
+## [Урок - Lesson 22](https://github.com/Igromant/Practice/tree/lesson22)
+
+## [Урок - Lesson 23](https://github.com/Igromant/Practice/tree/lesson23)
+
+## [Урок - Lesson 24](https://github.com/Igromant/Practice/tree/lesson24)
+
+## [Урок - Lesson 25](https://github.com/Igromant/Practice/tree/lesson25)
 
 
 # Еще дописываю список.
