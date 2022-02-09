@@ -1,6 +1,6 @@
 const scroll = () => {
     // Объявление переменной и функция анимации
-    const smoothLinks = document.querySelectorAll('a[href^="#"]');
+    const smoothLinks = document.querySelectorAll('.link');
     for (let smoothLink of smoothLinks) {
         smoothLink.addEventListener('click', function (e) {
             e.preventDefault();
