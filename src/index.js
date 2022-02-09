@@ -5,6 +5,7 @@ import valid from './modules/valid'
 import tabs from './modules/tabs'
 import scroll from './modules/scroll'
 import slider from './modules/slider'
+import calculator from './modules/calculator'
 
 
 timer('28 Feb 2022')
@@ -13,4 +14,5 @@ modal()
 valid()
 tabs()
 slider()
+calculator()
 scroll()
